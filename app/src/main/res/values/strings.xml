@@ -1,4 +1,25 @@
 <resources>
     <string name="app_name">IPTV</string>
     <string name="action_settings">Settings</string>
+
+    <string-array name="channel_array">
+        <item>-------SELECT CHANNEL-------</item>
+        <item>ABSCBN</item>
+        <item>KC HD</item>
+        <item>GMA</item>
+        <item>TV5</item>
+        <item>PT4</item>
+        <item>MYX</item>
+        <item>BTV</item>
+        <item>HBO</item>
+        <item>MM1</item>
+        <item>MM2</item>
+        <item>MM3</item>
+        <item>Mnet</item>
+        <item>STAR MOVIES</item>
+        <item>MTV LIVE HD</item>
+        <item>FOX PREMIUM HD</item>
+        <item>TRACE URBAN HD</item>
+        <item>NBA PREMIUM HD</item>
+    </string-array>
 </resources>

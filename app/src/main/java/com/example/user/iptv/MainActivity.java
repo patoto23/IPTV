@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.net.Uri;
+import android.widget.ArrayAdapter;
 import android.widget.MediaController;
+import android.widget.Spinner;
 import android.widget.VideoView;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,7 +22,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         VideoView vidView = (VideoView)findViewById(R.id.myVideo);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Spinner channelDropdown = (Spinner)findViewById(R.id.channelSpinner);
         setSupportActionBar(toolbar);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.channel_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
+        channelDropdown.setAdapter(adapter);
 
        //String vidAddress = "https://archive.org/download/ksnn_compilation_master_the_internet/ksnn_compilation_master_the_internet_512kb.mp4";
        String vidAddress = "http://r.gslb.lecloud.com/live/hls/201706223000000b899/desc.m3u8";
@@ -39,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
