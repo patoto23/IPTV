@@ -9,18 +9,19 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.net.Uri;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.MediaController;
 import android.widget.Spinner;
 import android.widget.VideoView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        VideoView vidView = (VideoView)findViewById(R.id.myVideo);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         Spinner channelDropdown = (Spinner)findViewById(R.id.channelSpinner);
         setSupportActionBar(toolbar);
@@ -28,14 +29,14 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.channel_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
         channelDropdown.setAdapter(adapter);
+        channelDropdown.setOnItemSelectedListener(this);
 
-       //String vidAddress = "https://archive.org/download/ksnn_compilation_master_the_internet/ksnn_compilation_master_the_internet_512kb.mp4";
-       String vidAddress = "http://r.gslb.lecloud.com/live/hls/201706223000000b899/desc.m3u8";
 
-        Uri vidUri = Uri.parse(vidAddress);
+        //String vidAddress = "https://archive.org/download/ksnn_compilation_master_the_internet/ksnn_compilation_master_the_internet_512kb.mp4";
+        //String vidAddress = "http://r.gslb.lecloud.com/live/hls/201706223000000b899/desc.m3u8";
+        //String vidAddress = "udp://@224.010.020.033:1234";
 
-        vidView.setVideoURI(vidUri);
-        vidView.start();
+
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +46,14 @@ public class MainActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+    }
+
+    public void streamVideo(String vidAddress){
+
+        Uri vidUri = Uri.parse(vidAddress);
+        VideoView vidView = (VideoView)findViewById(R.id.myVideo);
+        vidView.setVideoURI(vidUri);
+        vidView.start();
     }
 
 
@@ -70,4 +79,41 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int position , long id) {
+
+
+        switch (position){
+
+            case 0:
+                //Select Channel
+                streamVideo("d");
+                break;
+            case 1:
+                //ABSCBN
+                streamVideo("http://r.gslb.lecloud.com/live/hls/201706223000000b899/desc.m3u8");
+                break;
+            case 2:
+                //KC HD
+                streamVideo("http://www.kalibocable.net/images/KaliboCable.m3u");
+                break;
+            case 3:
+                //GMA
+                streamVideo("http://tv.best.iptv.uno:8080/live/FreeTech/tDdQHz9241/16527.ts");
+                break;
+            case 4:
+                //TV5
+                streamVideo("http://tv.best.iptv.uno:8080/live/FreeTech/tDdQHz9241/16511.ts");
+                break;
+            case 5:
+                break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
 }
