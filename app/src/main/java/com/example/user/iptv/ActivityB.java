@@ -1,6 +1,8 @@
 package com.example.user.iptv;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -11,11 +13,17 @@ import android.view.MenuItem;
 import android.net.Uri;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.Spinner;
 import android.widget.VideoView;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ActivityB extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+//    private static final int STOPSPLASH = 0;
+//    private static final long SPLASHTIME = 3000;
+//    private ImageView splash;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +38,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         adapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
         channelDropdown.setAdapter(adapter);
         channelDropdown.setOnItemSelectedListener(this);
+
+//        splash = (ImageView) findViewById(R.id.splashscreen);
+//        Message msg = new Message();
+//        msg.what = STOPSPLASH;
+//        splashHandler.sendMessageDelayed(msg, SPLASHTIME);
+
 
 
         //String vidAddress = "https://archive.org/download/ksnn_compilation_master_the_internet/ksnn_compilation_master_the_internet_512kb.mp4";
@@ -56,6 +70,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         vidView.start();
     }
 
+
+//    private Handler splashHandler = new Handler() {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            switch (msg.what) {
+//                case STOPSPLASH:
+//                    //remove SplashScreen from view
+//                    splash.setVisibility(View.GONE);
+//                    break;
+//            }
+//            super.handleMessage(msg);
+//        }
+//    };
 
 
     @Override
@@ -88,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             case 0:
                 //Select Channel
-                streamVideo("d");
+                //streamVideo("d");
                 break;
             case 1:
                 //ABSCBN
@@ -100,13 +127,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 break;
             case 3:
                 //GMA
-                streamVideo("http://tv.best.iptv.uno:8080/live/FreeTech/tDdQHz9241/16527.ts");
+                streamVideo("http://midnightiptvstreams.ddns.net:5050/live/tommy1/tommy1/62064.ts");
                 break;
             case 4:
                 //TV5
                 streamVideo("http://tv.best.iptv.uno:8080/live/FreeTech/tDdQHz9241/16511.ts");
                 break;
             case 5:
+                streamVideo("D:\\torrents\\Dragon Ball Super - Season 1\\Dragon Ball Super 1.mp4");
+                break;
+            case 6:
+                streamVideo("D:\\torrents\\Dragon Ball Super - Season 1\\Dragon Ball Super 1.mp4");
                 break;
         }
     }
